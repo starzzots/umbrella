@@ -3,8 +3,8 @@ require "json"
 
 puts "Where are you located?"
 
-#user_location = gets.chomp
-user_location = "Chicago"
+user_location = gets.chomp
+#user_location = "Chicago"
 puts "Checking weather at #{user_location}..."
 
 maps_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{user_location}&key=#{ENV.fetch("GMAPS_KEY")}"
@@ -43,7 +43,7 @@ puts "It is currently #{temp}°F." #hold alt + 0176 = °
 
 hourly_weather = weather_resp_parsed.fetch("hourly")
 
-hourly_data = hourly_weather.fetch("data")
+hourly_data = hourly_weather.fetch("data")[1..12]
 any_precipitation = false
 precip_prob_threshold = 0.10
 hourly_data.each do |hour_hash|
